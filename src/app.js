@@ -1,6 +1,4 @@
 function displayweather(response) {
-  console.log(response.data);
-  console.log();
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
 
@@ -18,6 +16,13 @@ function displayweather(response) {
 
   let dateElement = document.querySelector("#date");
   dateElement.innerHTML = FormatDate(response.data.dt * 1000);
+
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute =
+    ("src",
+    `openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+
+  iconElement.setAttribute = ("alt", response.data.weather[0].description);
 }
 
 function FormatDate(TimeStamp) {
@@ -30,7 +35,7 @@ function FormatDate(TimeStamp) {
   if (minute < 10) {
     minute = `0${minute}`;
   }
-  let day = date.getDay();
+
   let days = [
     "sunday",
     "Monday",
@@ -41,11 +46,22 @@ function FormatDate(TimeStamp) {
     "Saturday",
   ];
 
+  let day = days[date.getDay()];
+
   return `${day} ${hour}:${minute}`;
 }
 
 let apiKey = "c95d60a1e3adbeb286133f1ebebc2579";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Paris&appid=${apiKey}&units=metric`;
+let cityname = "Tehran";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=${apiKey}&units=metric`;
 
 console.log(apiUrl);
 axios.get(apiUrl).then(displayweather);
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
