@@ -1,6 +1,8 @@
 function displayweather(response) {
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  temperatureElement.innerHTML = Math.round(CelsiusTemp);
+
+  CelsiusTemp = response.data.main.temp;
 
   let citynameElement = document.querySelector("#cityname");
   citynameElement.innerHTML = response.data.name;
@@ -53,21 +55,11 @@ function FormatDate(TimeStamp) {
   return `${day} ${hour}:${minute}`;
 }
 
-//let apiKey = "c95d60a1e3adbeb286133f1ebebc2579";
-//let cityname = "Tehran";
-//let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=${apiKey}&units=metric`;
-
-//console.log(apiUrl);
-//axios.get(apiUrl).then(displayweather);
-
 function search(event) {
   event.preventDefault();
   let cityInputElement = document.querySelector("#city-input");
   console.log(cityInputElement.value);
 }
-
-//let form = document.querySelector("#search-form");
-//form.addEventListener("submit", search);
 
 function MainSearch(city) {
   let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
@@ -85,6 +77,35 @@ let form = document.querySelector("#search-form");
 form.addEventListener("submit", Search);
 
 MainSearch("New York");
+
+function ShowfahrenheitTemp(event) {
+  event.preventDefault();
+
+  fahrenheitLink.classList.remove("active");
+  CelsiusLink.classList.add("active");
+
+  let fahrenheitTemp = (CelsiusTemp * 9) / 5 + 32;
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(fahrenheitTemp);
+}
+
+function ShowCelTemp(event) {
+  event.preventDefault();
+
+  fahrenheitLink.classList.add("active");
+  CelsiusLink.classList.remove("active");
+
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(CelsiusTemp);
+}
+
+let CelsiusTemp = null;
+
+let fahrenheitLink = document.querySelector("#Far-link");
+fahrenheitLink.addEventListener("click", ShowfahrenheitTemp);
+
+let CelsiusLink = document.querySelector("#Cel-link");
+CelsiusLink.addEventListener("click", ShowCelTemp);
 
 //function formatDay(timestamp) {
 // let date = new Date(timestamp * 1000);
