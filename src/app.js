@@ -80,9 +80,8 @@ MainSearch("New York");
 
 function ShowfahrenheitTemp(event) {
   event.preventDefault();
-
-  fahrenheitLink.classList.remove("active");
-  CelsiusLink.classList.add("active");
+  fahrenheitLink.classList.add("active");
+  CelsiusLink.classList.remove("active");
 
   let fahrenheitTemp = (CelsiusTemp * 9) / 5 + 32;
   let temperatureElement = document.querySelector("#temperature");
@@ -92,8 +91,8 @@ function ShowfahrenheitTemp(event) {
 function ShowCelTemp(event) {
   event.preventDefault();
 
-  fahrenheitLink.classList.add("active");
-  CelsiusLink.classList.remove("active");
+  fahrenheitLink.classList.remove("active");
+  CelsiusLink.classList.add("active");
 
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(CelsiusTemp);
