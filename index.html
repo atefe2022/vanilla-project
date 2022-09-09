@@ -40,33 +40,30 @@
             </div>
           </form>
           <div class="overview">
+            <div class="row">
+            <div class="col-6">
             <h1 id="cityname"></h1>
             <ul>
               <li>Last updated: <span id="date"></span></li>
-              <li id="description"></li>
+              
+              <li>Humidity: <span id="humidity"></span>%, Wind: <span id="wind"></span> m/h </li>
+                
+                <li id="description"></li>
             </ul>
-          </div>
-          <div class="row">
+            </div>
             <div class="col-6">
-              <div class="d-flex weather-temperature">
+                          <div class="d-flex weather-temperature">
                 <img id="icon" src=".." alt="" class="float-left" />
                 <div class="float-left">
                   <strong id="temperature"></strong
                   ><span class="units">°C </span>
-                    
-             
+                    </div>
+             </div>
                 </div>
-              </div>
-            </div>
-            <div class="col-6">
-              <ul>
-                <li>Humidity: <span id="humidity"></span>%</li>
-                <li>Wind: <span id="wind"></span> m/h</li>
-              </ul>
-            </div>
+          
              <div class="col-12" id="forecast"></div>
           </div>
-
+</div>
           </div>
          
         </div>
