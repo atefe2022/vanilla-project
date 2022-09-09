@@ -79,33 +79,14 @@ form.addEventListener("submit", Search);
 
 MainSearch("New York");
 
-function ShowfahrenheitTemp(event) {
-  event.preventDefault();
-  fahrenheitLink.classList.add("active");
-  CelsiusLink.classList.remove("active");
-
-  let fahrenheitTemp = (CelsiusTemp * 9) / 5 + 32;
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(fahrenheitTemp);
-}
-
 function ShowCelTemp(event) {
   event.preventDefault();
-
-  fahrenheitLink.classList.remove("active");
-  CelsiusLink.classList.add("active");
 
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(CelsiusTemp);
 }
 
-let CelsiusTemp = null;
-
-let fahrenheitLink = document.querySelector("#Far-link");
-fahrenheitLink.addEventListener("click", ShowfahrenheitTemp);
-
-let CelsiusLink = document.querySelector("#Cel-link");
-CelsiusLink.addEventListener("click", ShowCelTemp);
+let CelsiusTemp = CelsiusTemp;
 
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
