@@ -113,3 +113,25 @@ body {
 .weather-forecast-temperature-min {
   color: rgb(135, 135, 135);
 }
+
+.weather-app {
+  max-width: 600px;
+  margin: 30px auto 0px auto;
+  padding: 20px;
+  border: 1px solid #949697;
+  border-radius: 10px;
+  background-color: aliceblue;
+}
+
+.footer {
+  font-size: 14px;
+  margin-top: 3px;
+  line-height: 18px;
+  text-align: center;
+  color: rgba(39, 33, 66, 0.4);
+}
+a {
+  color: #ff3b0091;
+  text-decoration: none;
+  background-color: transparent;
+}

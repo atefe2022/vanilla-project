@@ -74,7 +74,7 @@ function Search(event) {
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", Search);
 
-MainSearch("New York");
+MainSearch("Tokyo");
 
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
