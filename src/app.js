@@ -99,7 +99,6 @@ function ShowCelTemp(event) {
   temperatureElement.innerHTML = Math.round(CelsiusTemp);
 }
 
-displayForecast();
 let CelsiusTemp = null;
 
 let fahrenheitLink = document.querySelector("#Far-link");
@@ -108,13 +107,12 @@ fahrenheitLink.addEventListener("click", ShowfahrenheitTemp);
 let CelsiusLink = document.querySelector("#Cel-link");
 CelsiusLink.addEventListener("click", ShowCelTemp);
 
-//function formatDay(timestamp) {
-// let date = new Date(timestamp * 1000);
-// let day = date.getDay();
-//let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-// return days[day];
-// }
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
 
 function getForecast(coordinates) {
   console.log(coordinates);
@@ -124,30 +122,37 @@ function getForecast(coordinates) {
 }
 
 function displayForecast(response) {
-  console.log(response.data.daily);
+  let forcast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
-  let days = ["Thu", "Fri", "Sat", "Sun"];
+  // let days = ["Thu", "Fri", "Sat", "Sun"];
 
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forcast.forEach(function (Fday, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
       <div class="col-2">
-        <div class="weather-forecast-date">${day}</div>
+        <div class="weather-forecast-date">${formatDay(Fday.dt)}</div>
         <img
-          src="http://openweathermap.org/img/wn/50d@2x.png"
+          src="http://openweathermap.org/img/wn/${Fday.weather[0].icon}@2x.png"
           alt=""
           width="42"
         />
         <div class="weather-forecast-temperatures">
-          <span class="weather-forecast-temperature-max"> 18° </span>
-          <span class="weather-forecast-temperature-min"> 12° </span>
+          <span class="weather-forecast-temperature-max">${Math.round(
+            Fday.temp.max
+          )}°</span>
+          <span class="weather-forecast-temperature-min">${Math.round(
+            Fday.temp.min
+          )}°</span>
         </div>
       </div>
   `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
+displayForecast();

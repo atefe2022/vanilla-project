@@ -84,3 +84,7 @@ li:first-letter {
 #icon-2 {
   display: block;
 }
+
+.col-2 {
+  text-align: center;
+}
